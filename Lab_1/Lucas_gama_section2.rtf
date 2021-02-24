@@ -1,0 +1,106 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Bold;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\csgray\c0;}
+\margl1440\margr1440\vieww17700\viewh12420\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf2 \CocoaLigature0 Part 1:
+\fs22 \
+
+\f1\b0 Hello from Docker!\
+This message shows that your installation appears to be working correctly.\
+\
+To generate this message, Docker took the following steps:\
+ 1. The Docker client contacted the Docker daemon.\
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.\
+    (amd64)\
+ 3. The Docker daemon created a new container from that image which runs the\
+    executable that produces the output you are currently reading.\
+ 4. The Docker daemon streamed that output to the Docker client, which sent it\
+    to your terminal.\
+\
+To try something more ambitious, you can run an Ubuntu container with:\
+ $ docker run -it ubuntu bash\
+\
+Share images, automate workflows, and more with a free Docker ID:\
+ https://hub.docker.com/\
+\
+For more examples and ideas, visit:\
+ https://docs.docker.com/get-started/\
+\
+
+\f0\b\fs24 Part 2:
+\f1\b0\fs22 \
+MacBook-Pro-de-LUCAS:~ LucasGama$ docker ps -a\
+CONTAINER ID   IMAGE         COMMAND                  CREATED              STATUS                          PORTS     NAMES\
+7cd28d4f20e7   hello-world   "/hello"                 About a minute ago   Exited (0) About a minute ago             condescending_brahmagupta\
+70d250f2b381   alpine/git    "git clone https://g\'85"   4 minutes ago        Exited (128) 4 minutes ago                repo\
+\
+
+\f0\b\fs24 Part 3:
+\f1\b0\fs22 \
+MacBook-Pro-de-LUCAS:~ LucasGama$ docker rm condescending_brahmagupta\
+condescending_brahmagupta\
+MacBook-Pro-de-LUCAS:~ LucasGama$ docker ps -a\
+CONTAINER ID   IMAGE        COMMAND                  CREATED         STATUS                       PORTS     NAMES\
+70d250f2b381   alpine/git   "git clone https://g\'85"   8 minutes ago   Exited (128) 8 minutes ago             repo\
+MacBook-Pro-de-LUCAS:~ LucasGama$ docker rm repo\
+repo\
+MacBook-Pro-de-LUCAS:~ LucasGama$ docker ps -a\
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES\
+\
+
+\f0\b\fs24 Part 4:
+\f1\b0\fs22 \
+MacBook-Pro-de-LUCAS:~ LucasGama$ docker run --rm hello-world\
+\
+Hello from Docker!\
+This message shows that your installation appears to be working correctly.\
+\
+To generate this message, Docker took the following steps:\
+ 1. The Docker client contacted the Docker daemon.\
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.\
+    (amd64)\
+ 3. The Docker daemon created a new container from that image which runs the\
+    executable that produces the output you are currently reading.\
+ 4. The Docker daemon streamed that output to the Docker client, which sent it\
+    to your terminal.\
+\
+To try something more ambitious, you can run an Ubuntu container with:\
+ $ docker run -it ubuntu bash\
+\
+Share images, automate workflows, and more with a free Docker ID:\
+ https://hub.docker.com/\
+\
+For more examples and ideas, visit:\
+ https://docs.docker.com/get-started/\
+\
+MacBook-Pro-de-LUCAS:~ LucasGama$ docker ps -a\
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES\
+\
+
+\f0\b\fs24 Part 5:
+\f1\b0 \
+
+\fs22 MacBook-Pro-de-LUCAS:~ LucasGama$ docker run -it ubuntu bash \
+Unable to find image 'ubuntu:latest' locally\
+latest: Pulling from library/ubuntu\
+83ee3a23efb7: Pull complete \
+db98fc6f11f0: Pull complete \
+f611acd52c6c: Pull complete \
+Digest: sha256:703218c0465075f4425e58fac086e09e1de5c340b12976ab9eb8ad26615c3715\
+Status: Downloaded newer image for ubuntu:latest\
+root@d4b6568f268f:/# exit\
+exit\
+MacBook-Pro-de-LUCAS:~ LucasGama$ docker run -dt ubuntu bash\
+44e5b0047a8bbfcfd8442c54b402b64826d192dd4ce0dc0d6c43588aff02aa8a\
+MacBook-Pro-de-LUCAS:~ LucasGama$ docker ps\
+CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMES\
+44e5b0047a8b   ubuntu    "bash"    12 seconds ago   Up 11 seconds             distracted_cerf\
+MacBook-Pro-de-LUCAS:~ LucasGama$ docker rm distracted_cerf\
+Error response from daemon: You cannot remove a running container 44e5b0047a8bbfcfd8442c54b402b64826d192dd4ce0dc0d6c43588aff02aa8a. Stop the container before attempting removal or force remove\
+MacBook-Pro-de-LUCAS:~ LucasGama$ docker rm -f distracted_cerf\
+distracted_cerf\
+MacBook-Pro-de-LUCAS:~ LucasGama$ docker ps\
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAME}
