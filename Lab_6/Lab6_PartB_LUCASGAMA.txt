@@ -1,0 +1,173 @@
+Lab #6 Take Home
+Your name: Lucas Gama 
+
+
+---------------------------------------- Question 1 Query ---------------------------------------- 
+
+SELECT ship_city, COUNT(ship_city) FROM orders GROUP BY ship_city ORDER BY COUNT(ship_city) DESC LIMIT 10;										
+
+---------------------------------------- Question 1 Results ---------------------------------------- 					
+
+   ship_city    | count 
+----------------+-------
+ Rio de Janeiro |    34
+ London         |    33
+ Boise          |    31
+ Sao Paulo      |    31
+ Graz           |    30
+ México D.F.    |    28
+ Cunewalde      |    28
+ Cork           |    19
+ Bräcke         |    19
+ Albuquerque    |    18
+(10 rows)
+
+---------------------------------------- Question 2 Query ---------------------------------------- 
+
+CREATE VIEW view_temp AS SELECT O.ship_city, O.order_id, D.product_id FROM orders O INNER JOIN order_details D ON O.order_id = D.order_id WHERE O.ship_city = 'Graz';
+
+SELECT T.product_id, P.product_name FROM view_temp T INNER JOIN products P on T.product_id = P.product_id;
+
+---------------------------------------- Question 2 Results ---------------------------------------- 					
+
+ product_id |           product_name           
+------------+----------------------------------
+          2 | Chang
+          5 | Chef Anton's Gumbo Mix
+         32 | Mascarpone Fabioli
+         16 | Pavlova
+         24 | Guaraná Fantástica
+         30 | Nord-Ost Matjeshering
+         74 | Longlife Tofu
+         38 | Côte de Blaye
+         41 | Jack's New England Clam Chowder
+         44 | Gula Malacca
+         65 | Louisiana Fiery Hot Pepper Sauce
+         21 | Sir Rodney's Scones
+         28 | Rössle Sauerkraut
+         57 | Ravioli Angelo
+         64 | Wimmers gute Semmelknödel
+          5 | Chef Anton's Gumbo Mix
+         18 | Carnarvon Tigers
+         29 | Thüringer Rostbratwurst
+         33 | Geitost
+         74 | Longlife Tofu
+         31 | Gorgonzola Telino
+         35 | Steeleye Stout
+         46 | Spegesild
+         72 | Mozzarella di Giovanni
+         23 | Tunnbröd
+         63 | Vegie-spread
+         16 | Pavlova
+         48 | Chocolade
+         17 | Alice Mutton
+         21 | Sir Rodney's Scones
+         56 | Gnocchi di nonna Alice
+         59 | Raclette Courdavault
+         11 | Queso Cabrales
+         54 | Tourtière
+         66 | Louisiana Hot Spiced Okra
+         20 | Sir Rodney's Marmalade
+         28 | Rössle Sauerkraut
+         56 | Gnocchi di nonna Alice
+         65 | Louisiana Fiery Hot Pepper Sauce
+         75 | Rhönbräu Klosterbier
+         14 | Tofu
+         42 | Singaporean Hokkien Fried Mee
+         35 | Steeleye Stout
+         61 | Sirop d'érable
+         69 | Gudbrandsdalsost
+         12 | Queso Manchego La Pastora
+         13 | Konbu
+         26 | Gumbär Gummibärchen
+         62 | Tarte au sucre
+         69 | Gudbrandsdalsost
+         71 | Flotemysost
+(51 rows)											
+
+---------------------------------------- Question 3 Query ---------------------------------------- 
+
+CREATE VIEW test AS SELECT C.company_name, COUNT(O.order_id) FROM customers C JOIN orders O ON C.customer_id = O.customer_id GROUP BY C.company_name;
+
+SELECT AVG(T.count) FROM test T;
+
+SELECT C.company_name, COUNT(O.order_id) FROM customers C JOIN orders O ON C.customer_id = O.customer_id GROUP BY C.company_name HAVING COUNT(O.order_id) > 9.3258426966292135;
+
+---------------------------------------- Question 3 Results ---------------------------------------- 					
+
+         company_name         | count 
+------------------------------+-------
+ Magazzini Alimentari Riuniti |    10
+ Lehmanns Marktstand          |    15
+ Mère Paillarde               |    13
+ Rattlesnake Canyon Grocery   |    18
+ Hungry Owl All-Night Grocers |    19
+ Königlich Essen              |    14
+ Frankenversand               |    15
+ Around the Horn              |    13
+ Victuailles en stock         |    10
+ HILARION-Abastos             |    18
+ Old World Delicatessen       |    10
+ LILA-Supermercado            |    14
+ Godos Cocina Típica          |    10
+ Die Wandernde Kuh            |    10
+ Blondesddsl père et fils     |    11
+ Ricardo Adocicados           |    11
+ La maison d'Asie             |    14
+ Wartian Herkku               |    15
+ Bon app'                     |    17
+ Berglunds snabbköp           |    18
+ Suprêmes délices             |    12
+ Ernst Handel                 |    30
+ LINO-Delicateses             |    12
+ Ottilies Käseladen           |    10
+ Great Lakes Food Market      |    11
+ Save-a-lot Markets           |    31
+ Reggiani Caseifici           |    12
+ Queen Cozinha                |    13
+ QUICK-Stop                   |    28
+ Richter Supermarkt           |    10
+ Tortuga Restaurante          |    10
+ Folk och fä HB               |    19
+ Hanari Carnes                |    14
+ Vaffeljernet                 |    11
+ Bottom-Dollar Markets        |    14
+ B's Beverages                |    10
+ White Clover Markets         |    14
+ Piccolo und mehr             |    10
+ Island Trading               |    10
+(39 rows)
+											
+
+---------------------------------------- Question 4 Query ---------------------------------------- 
+
+
+CREATE VIEW new_test AS SELECT P.category_id AS pid, C.category_id AS cid, P.product_name, C.category_name FROM categories C INNER JOIN products P ON C.category_id = P.category_id ORDER BY P.category_id;	
+
+CREATE VIEW new_test2 AS SELECT category_name, COUNT(*) FROM new_test GROUP BY new_test.category_name;
+
+SELECT category_name, count FROM new_test2 WHERE count >= 10;
+									
+
+---------------------------------------- Question 4 Results ---------------------------------------- 					
+
+ category_name  | count 
+----------------+-------
+ Beverages      |    12
+ Dairy Products |    10
+ Seafood        |    12
+ Condiments     |    12
+ Confections    |    13
+(5 rows)											
+
+---------------------------------------- Question 5 Query ---------------------------------------- 
+
+SELECT P.product_name, P.units_on_order FROM products P ORDER BY P.units_on_order DESC LIMIT 1;							
+
+---------------------------------------- Question 5 Results ---------------------------------------- 					
+
+       product_name        | units_on_order 
+---------------------------+----------------
+ Louisiana Hot Spiced Okra |            100
+(1 row)											
+
